@@ -29,7 +29,7 @@ This capstone project showcases modern web development standards, responsive des
 
 ```bash
 # Clone the repository
-git clone https://github.com/[your-username]/Front_End_Capstone.git
+git clone https://github.com/Mkof37/Front_End_Capstone.git
 
 # Navigate to project
 cd Front_End_Capstone
