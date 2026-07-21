@@ -1,0 +1,27 @@
+{
+  "name": "front-end-capstone",
+  "version": "1.0.0",
+  "description": "A portfolio project showcasing professional frontend engineering practices and AI integration capabilities",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src",
+    "dev": "live-server src --port=3000",
+    "lint": "eslint src/**/*.js",
+    "format": "prettier --write src/**/*.{js,css,html}"
+  },
+  "keywords": [
+    "responsive",
+    "ai",
+    "design",
+    "converter",
+    "claude"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.0",
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {}
+}
