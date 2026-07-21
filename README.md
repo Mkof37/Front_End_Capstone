@@ -19,33 +19,43 @@ This capstone project showcases modern web development standards, responsive des
 - **AI Integration:** Claude API
 - **Tools:** Node.js, npm
 
+## Prerequisites
+
+- **Node.js (LTS)** - Download from [nodejs.org](https://nodejs.org)
+- **Git** - Download from [git-scm.com](https://git-scm.com)
+- **VS Code** (recommended) - Download from [code.visualstudio.com](https://code.visualstudio.com)
+
 ## Getting Started
 
 ```bash
 # Clone the repository
-git clone https://github.com/[your-username]/responsive-ai-converter.git
+git clone https://github.com/[your-username]/Front_End_Capstone.git
 
 # Navigate to project
-cd responsive-ai-converter
+cd Front_End_Capstone
 
 # Install dependencies
 npm install
 
 # Start development server
-npm start
+npm run dev
 ```
 
 ## Project Structure
 
 ```
-responsive-ai-converter/
+Front_End_Capstone/
 ├── src/
-│   ├── index.html
+│   ├── index.html           # Main application entry point
 │   ├── styles/
+│   │   └── main.css         # Responsive styling and components
 │   └── scripts/
-├── public/
-├── tests/
-└── docs/
+│       └── app.js           # Application logic and event handlers
+├── package.json             # Project dependencies and scripts
+├── README.md                # Project documentation
+├── CLAUDE.md                # Development guidelines and conventions
+├── LICENSE                  # MIT License
+└── .gitignore               # Git ignore rules
 ```
 
 ## Development
