@@ -14,6 +14,25 @@
         </header>
 
         <main class="main-content">
+            <section style="grid-column: 1 / -1; padding: 20px; border: 1px solid #ccc; margin-bottom: 20px;">
+                <h2>Settings</h2>
+                <form id="settingsForm">
+                    <p>Name: <input type="text" id="name"></p>
+                    <p>Email: <input type="email" id="email"></p>
+                    <p>CPU Alert %: <input type="number" id="cpu" value="80"></p>
+                    <p>Memory Alert %: <input type="number" id="memory" value="75"></p>
+                    <p>Notify: 
+                        <select id="notify">
+                            <option>Email</option>
+                            <option>SMS</option>
+                        </select>
+                    </p>
+                    <p><input type="checkbox" id="alerts"> Enable alerts</p>
+                    <button type="button" onclick="saveSettings()">Save</button>
+                </form>
+                <p id="msg"></p>
+            </section>
+
             <section class="input-section">
                 <h2>Analyze Your Design</h2>
                 <textarea 
@@ -39,5 +58,21 @@
     </div>
 
     <script src="scripts/app.js"></script>
+    <script>
+        function saveSettings() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var msg = document.getElementById('msg');
+            if (!name || !email) {
+                msg.innerHTML = '<span style="color:red">Please fill in all fields</span>';
+                return;
+            }
+            if (email.indexOf('@') === -1) {
+                msg.innerHTML = '<span style="color:red">Invalid email</span>';
+                return;
+            }
+            msg.innerHTML = '<span style="color:green">Settings saved!</span>';
+        }
+    </script>
 </body>
 </html>
