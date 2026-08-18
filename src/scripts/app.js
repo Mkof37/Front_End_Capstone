@@ -3,6 +3,8 @@
  * Handles UI interactions and AI API integration
  */
 
+import { initSettingsForm } from './settings-form.js';
+
 // DOM Elements
 const inputTextarea = document.getElementById('input');
 const analyzeBtn = document.getElementById('analyzeBtn');
@@ -12,6 +14,7 @@ const outputBox = document.getElementById('output');
  * Initialize application
  */
 function initApp() {
+    initSettingsForm();
     analyzeBtn.addEventListener('click', handleAnalyze);
     inputTextarea.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.key === 'Enter') {
