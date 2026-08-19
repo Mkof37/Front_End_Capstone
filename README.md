@@ -1,10 +1,14 @@
 # Front_End_Capstone
 
-A portfolio project demonstrating professional frontend engineering practices and AI integration capabilities.
+A portfolio project demonstrating professional frontend engineering
+practices and AI integration capabilities.
 
 ## Overview
 
-This capstone project showcases modern web development standards, responsive design principles, and clean code conventions. Built as a portfolio piece to demonstrate frontend engineering expertise, including HTML5, CSS3, JavaScript, and AI integration.
+This capstone project showcases modern web development standards,
+responsive design principles, and clean code conventions. Built as a
+portfolio piece to demonstrate frontend engineering expertise, including
+HTML5, CSS3, JavaScript, and AI integration.
 
 ## Features
 
@@ -51,17 +55,19 @@ npm run dev
 
 ## Running Tests
 
-Unit tests live in the `tests/` directory and run using Node's built-in test runner. To execute tests locally:
+Unit tests live in the `tests/` directory and run using Node's built-in
+test runner. To execute tests locally:
 
 ```bash
 npm test
 ```
 
-Ensure you have a recent Node.js LTS installed before running tests or development scripts.
+Ensure you have a recent Node.js LTS installed before running tests or
+development scripts.
 
 ## Project Structure
 
-```
+```text
 Front_End_Capstone/
 ├── src/
 │   ├── index.html           # Main application entry point
