@@ -14,9 +14,9 @@ HTML5, CSS3, JavaScript, and AI integration.
 
 - **Form Validation** – Separated validation modules with comprehensive edge-case testing
   - Empty field detection
-  - Email format validation
+  - Email format validation with @ and domain/TLD requirements
   - Whitespace-only input handling
-  - Configurable length constraints
+  - Message minimum length enforcement (10+ characters)
 - **Accessibility-First Design** – WCAG compliance built into forms
   - Associated `<label>` elements for all inputs
   - `aria-invalid` toggled on validation failure
@@ -176,14 +176,26 @@ The contact form demonstrates the project's core principles:
       />
       <div id="email-error" role="alert" class="contact-form__error"></div>
     </div>
+    
+    <div class="contact-form__field">
+      <label for="message">Message</label>
+      <textarea 
+        id="message" 
+        name="message" 
+        required 
+        aria-invalid="false"
+        aria-describedby="message-error"
+      ></textarea>
+      <div id="message-error" role="alert" class="contact-form__error"></div>
+    </div>
   </fieldset>
   
   <button type="submit">Send Message</button>
 </form>
 ```
 
-Validation logic is separated in `files/scripts/validation.js` and can be
-imported and tested independently of the DOM.
+Validation logic is defined in `files/test-validation.js` as pure functions and
+can be imported and tested independently of the DOM via Node.js.
 
 ## Quality Standards Checklist
 

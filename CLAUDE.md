@@ -13,9 +13,8 @@
 - **Live Server**: Local development server
 
 ### Backend/AI Integration
-- **Node.js (LTS)**: Runtime environment
-- **Claude API**: AI-powered content analysis and suggestions
-- **Express.js** (when needed): REST API framework
+- **Node.js (LTS)**: Runtime environment for testing and development
+- **Claude API**: Patterns and integration concepts (referenced in documentation)
 
 ### Development Tools
 - **Git**: Version control with Conventional Commits
@@ -109,12 +108,16 @@ These rules are testable and project-specific. If a change violates one, it shou
 
 ## Quality Standards
 
-- [ ] Code passes ESLint validation
-- [ ] Code is formatted with Prettier
-- [ ] All commits follow Conventional Commits format
-- [ ] README is clear and comprehensive
-- [ ] Project includes example/demo
-- [ ] Code includes comments for complex logic
+- [x] Code passes ESLint validation
+- [x] Code is formatted with Prettier
+- [x] All commits follow Conventional Commits format
+- [x] README is clear and comprehensive
+- [x] Project includes example/demo (Contact form)
+- [x] Code includes comments for complex logic
+- [x] Validation tests pass (`npm test`)
+- [x] Forms use separated validation modules (no inline handlers)
+- [x] All form inputs have associated labels
+- [x] Error regions use `role="alert"` and `aria-invalid`
 
 ## Getting Started
 
@@ -127,5 +130,5 @@ These rules are testable and project-specific. If a change violates one, it shou
 
 ---
 
-**Last Updated:** 2026-08-18  
-**Version:** 1.1.0
+**Last Updated:** 2026-08-19  
+**Version:** 1.2.0
