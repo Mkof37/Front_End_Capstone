@@ -1,0 +1,110 @@
+<div style="background: var(--surface-2); border-radius: 12px; border: 0.5px solid var(--border); padding: 1.25rem 1.5rem; max-width: 480px;">
+  <h3 style="margin: 0 0 4px;">Alert thresholds</h3>
+  <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 1.25rem;">Configure when alerts trigger for each metric.</p>
+
+  <div style="display: flex; flex-direction: column; gap: 1.1rem;">
+
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <label style="font-size: 14px;"><i class="ti ti-cpu" style="font-size:16px; vertical-align:-2px; margin-right:6px;" aria-hidden="true"></i>CPU usage</label>
+        <span style="font-size: 13px; font-weight: 500;" id="cpu-out">80%</span>
+      </div>
+      <input type="range" min="0" max="100" step="1" value="80" id="cpu" style="width: 100%;" />
+    </div>
+
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <label style="font-size: 14px;"><i class="ti ti-database" style="font-size:16px; vertical-align:-2px; margin-right:6px;" aria-hidden="true"></i>Memory usage</label>
+        <span style="font-size: 13px; font-weight: 500;" id="mem-out">75%</span>
+      </div>
+      <input type="range" min="0" max="100" step="1" value="75" id="mem" style="width: 100%;" />
+    </div>
+
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <label style="font-size: 14px;"><i class="ti ti-clock" style="font-size:16px; vertical-align:-2px; margin-right:6px;" aria-hidden="true"></i>Response time</label>
+        <span style="font-size: 13px; font-weight: 500;" id="resp-out">500 ms</span>
+      </div>
+      <input type="range" min="0" max="2000" step="10" value="500" id="resp" style="width: 100%;" />
+    </div>
+
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <label style="font-size: 14px;"><i class="ti ti-alert-triangle" style="font-size:16px; vertical-align:-2px; margin-right:6px;" aria-hidden="true"></i>Error rate</label>
+        <span style="font-size: 13px; font-weight: 500;" id="err-out">5%</span>
+      </div>
+      <input type="range" min="0" max="50" step="1" value="5" id="err" style="width: 100%;" />
+    </div>
+
+    <div>
+      <label style="font-size: 14px; display: block; margin-bottom: 6px;"><i class="ti ti-bell" style="font-size:16px; vertical-align:-2px; margin-right:6px;" aria-hidden="true"></i>Notify via</label>
+      <select id="channel" style="width: 100%;">
+        <option value="email">Email</option>
+        <option value="sms">SMS</option>
+        <option value="slack">Slack</option>
+        <option value="webhook">Webhook</option>
+      </select>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 0;">
+      <label for="enabled" style="font-size: 14px;">Enable alerts</label>
+      <input type="checkbox" id="enabled" checked style="width: 18px; height: 18px;" />
+    </div>
+
+  </div>
+
+  <p id="error-msg" style="display:none; font-size: 13px; color: var(--text-danger); margin: 12px 0 0;">Enter a value before saving.</p>
+
+  <div style="display: flex; gap: 8px; margin-top: 1.25rem;">
+    <button id="save-btn" style="flex: 1;">Save thresholds</button>
+    <button id="reset-btn" style="flex: 1;">Reset to defaults</button>
+  </div>
+  <p id="saved-msg" style="display:none; font-size: 13px; color: var(--text-success); margin: 10px 0 0;">Thresholds saved.</p>
+</div>
+
+<script>
+const fields = [
+  {id: 'cpu', out: 'cpu-out', suffix: '%', default: 80},
+  {id: 'mem', out: 'mem-out', suffix: '%', default: 75},
+  {id: 'resp', out: 'resp-out', suffix: ' ms', default: 500},
+  {id: 'err', out: 'err-out', suffix: '%', default: 5}
+];
+
+fields.forEach(f => {
+  const input = document.getElementById(f.id);
+  const out = document.getElementById(f.out);
+  input.addEventListener('input', () => {
+    out.textContent = Math.round(Number(input.value)) + f.suffix;
+  });
+});
+
+document.getElementById('save-btn').addEventListener('click', () => {
+  const errorMsg = document.getElementById('error-msg');
+  const savedMsg = document.getElementById('saved-msg');
+  let valid = true;
+  fields.forEach(f => {
+    const val = document.getElementById(f.id).value;
+    if (val === '' || val === null) valid = false;
+  });
+  if (!valid) {
+    errorMsg.style.display = 'block';
+    savedMsg.style.display = 'none';
+    return;
+  }
+  errorMsg.style.display = 'none';
+  savedMsg.style.display = 'block';
+});
+
+document.getElementById('reset-btn').addEventListener('click', () => {
+  fields.forEach(f => {
+    const input = document.getElementById(f.id);
+    const out = document.getElementById(f.out);
+    input.value = f.default;
+    out.textContent = f.default + f.suffix;
+  });
+  document.getElementById('channel').value = 'email';
+  document.getElementById('enabled').checked = true;
+  document.getElementById('saved-msg').style.display = 'none';
+  document.getElementById('error-msg').style.display = 'none';
+});
+</script>

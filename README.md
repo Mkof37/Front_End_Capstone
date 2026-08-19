@@ -41,6 +41,24 @@ npm install
 npm run dev
 ```
 
+## Scripts
+
+- `npm start`: Serve the `src/` folder with `live-server` (default)
+- `npm run dev`: Start dev server on port 3000
+- `npm test`: Run unit tests (Node.js built-in test runner)
+- `npm run lint`: Run ESLint on `src/` JavaScript files
+- `npm run format`: Format sources with Prettier
+
+## Running Tests
+
+Unit tests live in the `tests/` directory and run using Node's built-in test runner. To execute tests locally:
+
+```bash
+npm test
+```
+
+Ensure you have a recent Node.js LTS installed before running tests or development scripts.
+
 ## Project Structure
 
 ```
