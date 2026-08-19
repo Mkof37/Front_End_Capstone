@@ -88,6 +88,19 @@ When using Claude Code/Cursor in this project:
 4. **Documentation**: Generate comments and API documentation
 5. **Debugging**: Provide error traces for analysis and solutions
 
+## Project Rules (learned from FE-03)
+
+These rules are testable and project-specific. If a change violates one, it should fail review.
+
+1. **Forms use separated validation modules — never inline `<script>` or `onclick` handlers.**
+   All form logic lives in `src/scripts/` as ES modules. Validation functions must be pure (no DOM access) so `tests/` can import and assert on them. Inline handlers in HTML are rejected.
+
+2. **Every form input must have an associated `<label for="id">`, error region with `role="alert"`, and `aria-invalid` toggled on validation failure.**
+   Settings forms use BEM classes (`settings-form__*`) defined in `main.css`, not inline `style=""` attributes. Grouped controls use `<fieldset>`/`<legend>`.
+
+3. **New features ship with a verification step: write tests in `tests/` and confirm `npm test` passes before committing.**
+   Threshold validation must enforce configured min/max/step ranges (see `THRESHOLD_FIELDS` in `validation.js`). Do not accept empty-string checks on range inputs as validation.
+
 ### Example Prompts
 
 - "Review my responsive CSS and suggest accessibility improvements"
@@ -114,5 +127,5 @@ When using Claude Code/Cursor in this project:
 
 ---
 
-**Last Updated:** 2026-07-21  
-**Version:** 1.0.0
+**Last Updated:** 2026-08-18  
+**Version:** 1.1.0

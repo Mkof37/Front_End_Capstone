@@ -1,43 +1,248 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Responsive AI Converter</title>
-    <link rel="stylesheet" href="styles/main.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
     <div class="container">
-        <header class="header">
-            <h1>Responsive AI Converter</h1>
-            <p class="tagline">AI-Powered Responsive Design Optimization</p>
-        </header>
+      <header class="header">
+        <h1>Responsive AI Converter</h1>
+        <p class="tagline">AI-Powered Responsive Design Optimization</p>
+      </header>
 
-        <main class="main-content">
-            <section class="input-section">
-                <h2>Analyze Your Design</h2>
-                <textarea 
-                    id="input" 
-                    class="input-textarea"
-                    placeholder="Paste your HTML or describe your design challenge..."
-                    rows="8"
-                ></textarea>
-                <button id="analyzeBtn" class="btn btn--primary">Analyze with AI</button>
-            </section>
+      <main class="main-content">
+        <section class="settings-section" aria-labelledby="settings-heading">
+          <form id="settings-form" class="settings-form" novalidate>
+            <h2 id="settings-heading" class="settings-form__title">
+              Alert thresholds
+            </h2>
+            <p class="settings-form__description">
+              Configure when alerts trigger for each metric.
+            </p>
 
-            <section class="output-section">
-                <h2>AI Recommendations</h2>
-                <div id="output" class="output-box">
-                    <p class="placeholder">Analysis results will appear here...</p>
+            <div
+              id="settings-error-summary"
+              class="settings-form__error-summary"
+              role="alert"
+              aria-live="polite"
+              tabindex="-1"
+              hidden
+            >
+              <p class="settings-form__error-heading">
+                Fix the following errors:
+              </p>
+              <ul
+                id="settings-error-list"
+                class="settings-form__error-list"
+              ></ul>
+            </div>
+
+            <fieldset class="settings-form__fieldset">
+              <legend class="settings-form__legend">Metric thresholds</legend>
+
+              <div class="settings-form__field">
+                <div class="settings-form__field-header">
+                  <label for="cpu" class="settings-form__label"
+                    >CPU usage</label
+                  >
+                  <output id="cpu-out" class="settings-form__value" for="cpu"
+                    >80%</output
+                  >
                 </div>
-            </section>
-        </main>
+                <input
+                  type="range"
+                  id="cpu"
+                  name="cpu"
+                  class="settings-form__range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="80"
+                  aria-describedby="cpu-error"
+                />
+                <span
+                  id="cpu-error"
+                  class="settings-form__field-error"
+                  role="alert"
+                ></span>
+              </div>
 
-        <footer class="footer">
-            <p>&copy; 2026 Responsive AI Converter. MIT License.</p>
-        </footer>
+              <div class="settings-form__field">
+                <div class="settings-form__field-header">
+                  <label for="memory" class="settings-form__label"
+                    >Memory usage</label
+                  >
+                  <output
+                    id="memory-out"
+                    class="settings-form__value"
+                    for="memory"
+                    >75%</output
+                  >
+                </div>
+                <input
+                  type="range"
+                  id="memory"
+                  name="memory"
+                  class="settings-form__range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="75"
+                  aria-describedby="memory-error"
+                />
+                <span
+                  id="memory-error"
+                  class="settings-form__field-error"
+                  role="alert"
+                ></span>
+              </div>
+
+              <div class="settings-form__field">
+                <div class="settings-form__field-header">
+                  <label for="responseTime" class="settings-form__label"
+                    >Response time</label
+                  >
+                  <output
+                    id="responseTime-out"
+                    class="settings-form__value"
+                    for="responseTime"
+                    >500 ms</output
+                  >
+                </div>
+                <input
+                  type="range"
+                  id="responseTime"
+                  name="responseTime"
+                  class="settings-form__range"
+                  min="0"
+                  max="2000"
+                  step="10"
+                  value="500"
+                  aria-describedby="responseTime-error"
+                />
+                <span
+                  id="responseTime-error"
+                  class="settings-form__field-error"
+                  role="alert"
+                ></span>
+              </div>
+
+              <div class="settings-form__field">
+                <div class="settings-form__field-header">
+                  <label for="errorRate" class="settings-form__label"
+                    >Error rate</label
+                  >
+                  <output
+                    id="errorRate-out"
+                    class="settings-form__value"
+                    for="errorRate"
+                    >5%</output
+                  >
+                </div>
+                <input
+                  type="range"
+                  id="errorRate"
+                  name="errorRate"
+                  class="settings-form__range"
+                  min="0"
+                  max="50"
+                  step="1"
+                  value="5"
+                  aria-describedby="errorRate-error"
+                />
+                <span
+                  id="errorRate-error"
+                  class="settings-form__field-error"
+                  role="alert"
+                ></span>
+              </div>
+            </fieldset>
+
+            <div class="settings-form__field">
+              <label for="channel" class="settings-form__label"
+                >Notify via</label
+              >
+              <select
+                id="channel"
+                name="channel"
+                class="settings-form__select"
+                aria-describedby="channel-error"
+              >
+                <option value="email">Email</option>
+                <option value="sms">SMS</option>
+                <option value="slack">Slack</option>
+                <option value="webhook">Webhook</option>
+              </select>
+              <span
+                id="channel-error"
+                class="settings-form__field-error"
+                role="alert"
+              ></span>
+            </div>
+
+            <div class="settings-form__toggle">
+              <label for="enabled" class="settings-form__label"
+                >Enable alerts</label
+              >
+              <input
+                type="checkbox"
+                id="enabled"
+                name="enabled"
+                class="settings-form__checkbox"
+                checked
+              />
+            </div>
+
+            <div class="settings-form__actions">
+              <button type="button" id="save-btn" class="btn btn--primary">
+                Save thresholds
+              </button>
+              <button type="button" id="reset-btn" class="btn btn--secondary">
+                Reset to defaults
+              </button>
+            </div>
+
+            <p
+              id="settings-saved-msg"
+              class="settings-form__success"
+              role="status"
+              aria-live="polite"
+              hidden
+            >
+              Thresholds saved.
+            </p>
+          </form>
+        </section>
+
+        <section class="input-section">
+          <h2>Analyze Your Design</h2>
+          <textarea
+            id="input"
+            class="input-textarea"
+            placeholder="Paste your HTML or describe your design challenge..."
+            rows="8"
+          ></textarea>
+          <button id="analyzeBtn" class="btn btn--primary">
+            Analyze with AI
+          </button>
+        </section>
+
+        <section class="output-section">
+          <h2>AI Recommendations</h2>
+          <div id="output" class="output-box">
+            <p class="placeholder">Analysis results will appear here...</p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>&copy; 2026 Responsive AI Converter. MIT License.</p>
+      </footer>
     </div>
 
-    <script src="scripts/app.js"></script>
-</body>
+    <script type="module" src="scripts/app.js"></script>
+  </body>
 </html>
