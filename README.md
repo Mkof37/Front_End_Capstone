@@ -93,3 +93,5 @@ MIT - See [LICENSE](./LICENSE) file for details
 ---
 
 **Status:** Initial setup and project scaffolding
+
+**Last updated:** 2026-08-19
