@@ -24,7 +24,7 @@ HTML5, CSS3, JavaScript, and AI integration.
   - `aria-live="polite"` for non-blocking success/error messages
   - Keyboard navigation support
 - **Clean Code Architecture** – No inline event handlers or validation logic
-  - Form logic separated into testable modules in `files/scripts/`
+  - Validation functions separated in `files/` for Node.js test compatibility
   - BEM naming conventions for CSS
   - Pure validation functions (no DOM access) for unit testability
 - **Tested & Verified** – Every feature ships with passing tests
@@ -93,29 +93,34 @@ development scripts.
 ## Form Validation Rules
 
 ### Contact Form
-- **Name:** Required, non-whitespace, max 100 characters
-- **Email:** Required, valid email format (RFC 5322 simplified)
-- **Message:** Required, minimum 10 characters, max 1000 characters
+- **Name:** Required, non-whitespace input
+- **Email:** Required, valid email format (requires @, domain, and TLD)
+- **Message:** Required, minimum 10 characters
 
 Validation occurs on form submit. All errors are announced to screen readers
 via `aria-live` regions and displayed inline without blocking user workflow.
+Invalid fields are marked with `aria-invalid="true"`.
 
 ## Project Structure
 
 ```text
 Front_End_Capstone/
 ├── files/
-│   ├── index.html           # Main application entry point
-│   ├── app.js               # Application logic and event handlers
-│   ├── main.css             # Responsive styling and components
-│   ├── test-validation.js   # Form validation test suite
-│   └── WORKFLOW.md          # Development workflow documentation
-├── .eslintrc.json           # ESLint configuration
-├── package.json             # Project dependencies and scripts
-├── README.md                # Project documentation
-├── CLAUDE.md                # Development guidelines and conventions
-├── LICENSE                  # MIT License
-└── .gitignore               # Git ignore rules
+│   ├── index.html             # Main application entry point
+│   ├── app.js                 # Application logic and event handlers
+│   ├── main.css               # Responsive styling and components
+│   ├── test-validation.js     # Form validation test suite (Node.js)
+│   ├── CLAUDE.md              # Local development guidelines copy
+│   ├── WORKFLOW.md            # Vague vs. precise prompting case study
+│   └── mnt/                   # Archive of previous iterations
+├── .eslintrc.json             # ESLint configuration
+├── .gitignore                 # Git ignore rules
+├── package.json               # Project dependencies and scripts
+├── package-lock.json          # Locked dependency versions
+├── README.md                  # Project documentation
+├── CLAUDE.md                  # Development guidelines and conventions
+├── LICENSE                    # MIT License
+└── node_modules/              # Installed dependencies (ignored in git)
 ```
 
 ## Development Approach

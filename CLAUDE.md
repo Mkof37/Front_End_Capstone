@@ -62,20 +62,20 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 ### File Structure
 
 ```
-src/
-├── index.html          # Main entry point
-├── styles/
-│   └── main.css        # Primary stylesheet
-├── scripts/
-│   ├── app.js          # Main application logic
-│   ├── api.js          # Claude API integration
-│   └── utils.js        # Utility functions
-└── assets/
-    └── images/
-
-public/                # Static files served to users
-
-tests/                 # Test files
+Front_End_Capstone/
+├── files/
+│   ├── index.html          # Main application entry point
+│   ├── app.js              # Application logic and event handlers
+│   ├── main.css            # Responsive styling and BEM components
+│   ├── test-validation.js  # Form validation test suite (Node.js)
+│   ├── WORKFLOW.md         # Vague vs. precise prompting case study
+│   └── mnt/                # Archive of previous iterations
+├── package.json            # npm dependencies and scripts
+├── .eslintrc.json          # ESLint configuration
+├── README.md               # Project documentation
+├── CLAUDE.md               # Development guidelines
+├── LICENSE                 # MIT License
+└── .gitignore              # Git ignore rules
 ```
 
 ## AI Assistant Guidelines
@@ -93,13 +93,13 @@ When using Claude Code/Cursor in this project:
 These rules are testable and project-specific. If a change violates one, it should fail review.
 
 1. **Forms use separated validation modules — never inline `<script>` or `onclick` handlers.**
-   All form logic lives in `src/scripts/` as ES modules. Validation functions must be pure (no DOM access) so `tests/` can import and assert on them. Inline handlers in HTML are rejected.
+   All validation logic lives in `files/` as pure functions. Validation functions must be pure (no DOM access) so `test-validation.js` can import and assert on them. Inline handlers in HTML are rejected.
 
 2. **Every form input must have an associated `<label for="id">`, error region with `role="alert"`, and `aria-invalid` toggled on validation failure.**
-   Settings forms use BEM classes (`settings-form__*`) defined in `main.css`, not inline `style=""` attributes. Grouped controls use `<fieldset>`/`<legend>`.
+   Forms use BEM classes (e.g., `contact-form__field`, `contact-form__error`) defined in `files/main.css`, not inline `style=""` attributes. Grouped controls use `<fieldset>`/`<legend>`.
 
-3. **New features ship with a verification step: write tests in `tests/` and confirm `npm test` passes before committing.**
-   Threshold validation must enforce configured min/max/step ranges (see `THRESHOLD_FIELDS` in `validation.js`). Do not accept empty-string checks on range inputs as validation.
+3. **New features ship with a verification step: write tests in `files/test-validation.js` and confirm `npm test` passes before committing.**
+   Form validation must match the test assertions exactly. Do not accept empty-string checks as sufficient validation—verify actual business logic (min/max length, format, trimming whitespace).
 
 ### Example Prompts
 
