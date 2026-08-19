@@ -12,10 +12,28 @@ HTML5, CSS3, JavaScript, and AI integration.
 
 ## Features
 
-- AI-powered responsive design analysis
-- Automatic content adaptation
-- Real-time optimization suggestions
-- Interactive preview and testing
+- **Form Validation** – Separated validation modules with comprehensive edge-case testing
+  - Empty field detection
+  - Email format validation
+  - Whitespace-only input handling
+  - Configurable length constraints
+- **Accessibility-First Design** – WCAG compliance built into forms
+  - Associated `<label>` elements for all inputs
+  - `aria-invalid` toggled on validation failure
+  - Error regions with `role="alert"` and `aria-describedby`
+  - `aria-live="polite"` for non-blocking success/error messages
+  - Keyboard navigation support
+- **Clean Code Architecture** – No inline event handlers or validation logic
+  - Form logic separated into testable modules in `files/scripts/`
+  - BEM naming conventions for CSS
+  - Pure validation functions (no DOM access) for unit testability
+- **Tested & Verified** – Every feature ships with passing tests
+  - Validation test suite in `files/test-validation.js`
+  - Edge case coverage (empty, invalid, boundary, whitespace inputs)
+  - Tests verify correct behavior before commit
+- **AI Integration Concepts** – Demonstrates Claude API patterns
+  - Responsive design principles
+  - Real-time optimization suggestions
 
 ## Tech Stack
 
@@ -42,39 +60,57 @@ cd Front_End_Capstone
 npm install
 
 # Start development server
-npm run dev
+npm start
 ```
 
 ## Scripts
 
-- `npm start`: Serve the `src/` folder with `live-server` (default)
+- `npm start`: Serve the `files/` folder with `live-server`
 - `npm run dev`: Start dev server on port 3000
-- `npm test`: Run unit tests (Node.js built-in test runner)
-- `npm run lint`: Run ESLint on `src/` JavaScript files
-- `npm run format`: Format sources with Prettier
+- `npm test`: Run validation tests on form inputs
+- `npm run lint`: Run ESLint on `files/**/*.js` JavaScript files
+- `npm run format`: Format `files/` with Prettier (JS, CSS, HTML)
 
 ## Running Tests
 
-Unit tests live in the `tests/` directory and run using Node's built-in
-test runner. To execute tests locally:
+Validation tests are located in `files/test-validation.js` and validate
+form input handling and edge cases. To execute tests locally:
 
 ```bash
 npm test
 ```
 
+Tests verify:
+- Empty field rejection
+- Invalid email format detection
+- Message length constraints
+- Whitespace-only input handling
+- Keyboard navigation and focus management
+
 Ensure you have a recent Node.js LTS installed before running tests or
 development scripts.
+
+## Form Validation Rules
+
+### Contact Form
+- **Name:** Required, non-whitespace, max 100 characters
+- **Email:** Required, valid email format (RFC 5322 simplified)
+- **Message:** Required, minimum 10 characters, max 1000 characters
+
+Validation occurs on form submit. All errors are announced to screen readers
+via `aria-live` regions and displayed inline without blocking user workflow.
 
 ## Project Structure
 
 ```text
 Front_End_Capstone/
-├── src/
+├── files/
 │   ├── index.html           # Main application entry point
-│   ├── styles/
-│   │   └── main.css         # Responsive styling and components
-│   └── scripts/
-│       └── app.js           # Application logic and event handlers
+│   ├── app.js               # Application logic and event handlers
+│   ├── main.css             # Responsive styling and components
+│   ├── test-validation.js   # Form validation test suite
+│   └── WORKFLOW.md          # Development workflow documentation
+├── .eslintrc.json           # ESLint configuration
 ├── package.json             # Project dependencies and scripts
 ├── README.md                # Project documentation
 ├── CLAUDE.md                # Development guidelines and conventions
@@ -82,19 +118,89 @@ Front_End_Capstone/
 └── .gitignore               # Git ignore rules
 ```
 
-## Development
+## Development Approach
 
-See [CLAUDE.md](./CLAUDE.md) for development conventions and AI assistant guidelines.
+This capstone emphasizes **precise prompting over vague requests**. Read
+[WORKFLOW.md](./files/WORKFLOW.md) for a detailed case study: vague prompts
+result in forms with zero validation and accessibility failures; precise
+prompts with explicit test requirements catch those issues up front.
+
+**Core principle:** Write tests first, verify behavior, *then* commit code.
+This approach ensures quality before the code ships, not after a user or
+accessibility audit finds the bugs.
+
+**Development Conventions:** See [CLAUDE.md](./CLAUDE.md) for coding standards,
+ES module structure, BEM CSS conventions, and AI assistant guidelines.
 
 ## License
 
 MIT - See [LICENSE](./LICENSE) file for details
 
+## Example: Contact Form
+
+The contact form demonstrates the project's core principles:
+
+```html
+<!-- Semantic HTML with labels and error regions -->
+<form id="contact-form" class="contact-form">
+  <fieldset>
+    <legend>Send us a message</legend>
+    
+    <div class="contact-form__field">
+      <label for="name">Name</label>
+      <input 
+        id="name" 
+        type="text" 
+        name="name" 
+        required 
+        aria-invalid="false"
+        aria-describedby="name-error"
+      />
+      <div id="name-error" role="alert" class="contact-form__error"></div>
+    </div>
+    
+    <div class="contact-form__field">
+      <label for="email">Email</label>
+      <input 
+        id="email" 
+        type="email" 
+        name="email" 
+        required 
+        aria-invalid="false"
+        aria-describedby="email-error"
+      />
+      <div id="email-error" role="alert" class="contact-form__error"></div>
+    </div>
+  </fieldset>
+  
+  <button type="submit">Send Message</button>
+</form>
+```
+
+Validation logic is separated in `files/scripts/validation.js` and can be
+imported and tested independently of the DOM.
+
+## Quality Standards Checklist
+
+- [x] Code passes ESLint validation
+- [x] Code is formatted with Prettier
+- [x] All commits follow Conventional Commits format
+- [x] README is clear and comprehensive
+- [x] Project includes example/demo (Contact form)
+- [x] Code includes comments for complex logic
+- [x] Validation tests pass (`npm test`)
+- [x] Forms use separated validation modules (no inline handlers)
+- [x] All form inputs have associated labels
+- [x] Error regions use `role="alert"` and `aria-invalid`
+
 ## Contributing
 
 1. Follow [Conventional Commits](https://www.conventionalcommits.org/) format
 2. Create feature branches from `main`
-3. Submit pull requests with clear descriptions
+3. Write tests for new features and run `npm test` before committing
+4. Submit pull requests with clear descriptions
+5. Ensure ESLint passes: `npm run lint`
+6. Format code: `npm run format`
 
 ---
 
