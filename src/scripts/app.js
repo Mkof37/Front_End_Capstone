@@ -3,49 +3,49 @@
  * Handles UI interactions and AI API integration
  */
 
-import { initSettingsForm } from './settings-form.js';
+import { initSettingsForm } from "./settings-form.js";
 
 // DOM Elements
-const inputTextarea = document.getElementById('input');
-const analyzeBtn = document.getElementById('analyzeBtn');
-const outputBox = document.getElementById('output');
+const inputTextarea = document.getElementById("input");
+const analyzeBtn = document.getElementById("analyzeBtn");
+const outputBox = document.getElementById("output");
 
 /**
  * Initialize application
  */
 function initApp() {
-    initSettingsForm();
-    analyzeBtn.addEventListener('click', handleAnalyze);
-    inputTextarea.addEventListener('keydown', (e) => {
-        if (e.ctrlKey && e.key === 'Enter') {
-            handleAnalyze();
-        }
-    });
+  initSettingsForm();
+  analyzeBtn.addEventListener("click", handleAnalyze);
+  inputTextarea.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key === "Enter") {
+      handleAnalyze();
+    }
+  });
 }
 
 /**
  * Handle analyze button click
  */
 async function handleAnalyze() {
-    const input = inputTextarea.value.trim();
+  const input = inputTextarea.value.trim();
 
-    if (!input) {
-        displayError('Please enter some content to analyze.');
-        return;
-    }
+  if (!input) {
+    displayError("Please enter some content to analyze.");
+    return;
+  }
 
-    setLoading(true);
+  setLoading(true);
 
-    try {
-        // Placeholder for AI API call
-        // In production, this would call Claude API via backend
-        const result = await simulateAIAnalysis(input);
-        displayResult(result);
-    } catch (error) {
-        displayError(`Error: ${error.message}`);
-    } finally {
-        setLoading(false);
-    }
+  try {
+    // Placeholder for AI API call
+    // In production, this would call Claude API via backend
+    const result = await simulateAIAnalysis(input);
+    displayResult(result);
+  } catch (error) {
+    displayError(`Error: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
 }
 
 /**
@@ -54,11 +54,11 @@ async function handleAnalyze() {
  * @returns {Promise<string>} - The AI analysis result
  */
 async function simulateAIAnalysis(input) {
-    // Simulate network delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+  // Simulate network delay
+  await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    // Return mock recommendation
-    return `
+  // Return mock recommendation
+  return `
         <h3>📊 Responsive Design Analysis</h3>
         <p><strong>Input processed:</strong> ${input.substring(0, 50)}...</p>
         <div class="recommendations">
@@ -80,7 +80,7 @@ async function simulateAIAnalysis(input) {
  * @param {string} result - The result HTML to display
  */
 function displayResult(result) {
-    outputBox.innerHTML = result;
+  outputBox.innerHTML = result;
 }
 
 /**
@@ -88,7 +88,7 @@ function displayResult(result) {
  * @param {string} message - The error message
  */
 function displayError(message) {
-    outputBox.innerHTML = `<p class="error" style="color: #e74c3c;">${message}</p>`;
+  outputBox.innerHTML = `<p class="error" style="color: #e74c3c;">${message}</p>`;
 }
 
 /**
@@ -96,10 +96,10 @@ function displayError(message) {
  * @param {boolean} isLoading - Whether loading or not
  */
 function setLoading(isLoading) {
-    analyzeBtn.disabled = isLoading;
-    analyzeBtn.textContent = isLoading ? 'Analyzing...' : 'Analyze with AI';
-    analyzeBtn.style.opacity = isLoading ? 0.6 : 1;
+  analyzeBtn.disabled = isLoading;
+  analyzeBtn.textContent = isLoading ? "Analyzing..." : "Analyze with AI";
+  analyzeBtn.style.opacity = isLoading ? 0.6 : 1;
 }
 
 // Initialize app when DOM is ready
-document.addEventListener('DOMContentLoaded', initApp);
+document.addEventListener("DOMContentLoaded", initApp);
