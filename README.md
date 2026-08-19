@@ -81,6 +81,7 @@ npm test
 ```
 
 Tests verify:
+
 - Empty field rejection
 - Invalid email format detection
 - Message length constraints
@@ -93,6 +94,7 @@ development scripts.
 ## Form Validation Rules
 
 ### Contact Form
+
 - **Name:** Required, non-whitespace input
 - **Email:** Required, valid email format (requires @, domain, and TLD)
 - **Message:** Required, minimum 10 characters

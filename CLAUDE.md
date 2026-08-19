@@ -7,16 +7,19 @@
 ## Technology Stack
 
 ### Frontend
+
 - **HTML5**: Semantic markup structure
 - **CSS3**: Responsive design, Flexbox, Grid layouts
 - **JavaScript (ES6+)**: Modern vanilla JS, async/await, fetch API
 - **Live Server**: Local development server
 
 ### Backend/AI Integration
+
 - **Node.js (LTS)**: Runtime environment for testing and development
 - **Claude API**: Patterns and integration concepts (referenced in documentation)
 
 ### Development Tools
+
 - **Git**: Version control with Conventional Commits
 - **npm**: Package management
 - **ESLint**: Code quality and consistency
@@ -27,6 +30,7 @@
 ## Coding Conventions
 
 ### JavaScript
+
 ```javascript
 // Use const/let (no var)
 // Prefer arrow functions
@@ -36,6 +40,7 @@
 ```
 
 ### CSS
+
 ```css
 /* BEM naming convention for classes */
 .component-name { }
@@ -60,7 +65,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ### File Structure
 
-```
+```text
 Front_End_Capstone/
 ├── files/
 │   ├── index.html          # Main application entry point
