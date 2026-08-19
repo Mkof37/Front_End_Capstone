@@ -1,12 +1,18 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "node": true
   },
   "extends": "eslint:recommended",
   "parserOptions": {
-    "ecmaVersion": 2021,
+    "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "rules": {}
+  "rules": {
+    "no-unused-vars": ["warn"],
+    "no-undef": "error",
+    "indent": ["warn", 2],
+    "quotes": ["warn", "single"]
+  }
 }
