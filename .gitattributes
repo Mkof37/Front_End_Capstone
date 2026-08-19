@@ -1,0 +1,16 @@
+# Normalize line endings to LF for text files
+* text=auto
+
+# Explicitly enforce LF for common text/source file types
+*.md     text eol=lf
+*.js     text eol=lf
+*.css    text eol=lf
+*.html   text eol=lf
+*.json   text eol=lf
+
+# Binary files
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.pdf    binary
